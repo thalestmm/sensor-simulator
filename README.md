@@ -6,13 +6,13 @@ This project aims to create multiple parallel instances of sensors or switches i
 
 #### Start a new Virtual Environment
 
-'''
+```
 $ python3 -m venv .venv
 $ source .venv/bin/activate
-'''
+```
 
 #### Install the required dependencies
 
-'''
+```
 $ (venv) pip install -r setup/requirements.txt
-'''
+```
