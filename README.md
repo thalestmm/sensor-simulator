@@ -14,5 +14,5 @@ $ source .venv/bin/activate
 #### Install the required dependencies
 
 ```
-$ (venv) pip install -r setup/requirements.txt
+(.venv) $ pip install -r setup/requirements.txt
 ```
