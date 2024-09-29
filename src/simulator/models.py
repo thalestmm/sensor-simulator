@@ -1,5 +1,6 @@
 from pydantic import BaseModel, field_validator
 from pydantic_core import PydanticCustomError
+from random import randrange
 
 class Machine(BaseModel):
     name: str = "General Machine"
@@ -15,7 +16,7 @@ class Sensor(Machine):
     @field_validator('min_reading')
     @classmethod
     def validate_min_reading(cls, v: float) -> float:
-        if v > cls.max_reading:
+        if v >= cls.max_reading:
             raise PydanticCustomError(
                 'interval_error',
                 'min_reading must be less than max_reading',
@@ -27,16 +28,24 @@ class Sensor(Machine):
     @field_validator('steps')
     @classmethod
     def validate_steps(cls, v: float) -> float:
-        if v > (cls.max_reading - cls.min_reading):
+        if v >= (cls.max_reading - cls.min_reading):
             raise PydanticCustomError(
                 'interval_error',
                 'steps must be less than the interval set for the readings',
                 {'steps': v,
-                 'interval_distance': (cls.max_reading - cls.min_reading)}
+                 'interval_distance': (cls.max_reading - cls.min_reading)},
             )
         return v
 
     # TODO: Test all validations
+    # TODO: Add exporting into json for creating presets (pydantic already has this feature)
+    # TODO: Add instance creation from preset
+
+    def generate_value(self):
+        pass
+
+    def __str__(self):
+        return f'{self.name} ({self.unit_of_measure})'
 
 
 class Switch(Machine):
