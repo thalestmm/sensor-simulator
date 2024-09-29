@@ -19,7 +19,7 @@ class Sensor(Machine):
         if v >= cls.max_reading:
             raise PydanticCustomError(
                 'interval_error',
-                'min_reading must be less than max_reading',
+                'The lower boundary for the readings must be less than the top boundary.',
                 {'min_reading': v,
                  'max_reading': cls.max_reading},
             )
@@ -31,7 +31,7 @@ class Sensor(Machine):
         if v >= (cls.max_reading - cls.min_reading):
             raise PydanticCustomError(
                 'interval_error',
-                'steps must be less than the interval set for the readings',
+                'Value for the steps must be lower than the interval set for the readings.',
                 {'steps': v,
                  'interval_distance': (cls.max_reading - cls.min_reading)},
             )
